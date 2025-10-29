@@ -1,0 +1,24 @@
+name = "sitemap-merge"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Production routes
+routes = [
+  { pattern = "www.urbanpubsandbars.com/sitemap.xml", zone_name = "urbanpubsandbars.com" },
+  { pattern = "www.urbanpubsandbars.com/webhook/sitemap-invalidate", zone_name = "urbanpubsandbars.com" }
+]
+
+# Environment variables
+[vars]
+MAIN_SITEMAP_URL = "https://www.urbanpubsandbars.com/sitemap.xml"
+CITY_SITEMAP_URL = "https://city.urbanpubsandbars.com/sitemap.xml"
+CAREERS_SITEMAP_URL = "https://careers.urbanpubsandbars.com/sitemap.xml"
+PATH_MAPPINGS = "city-by-urban:city, work-with-us:careers"
+
+# KV Namespace for caching merged sitemap
+[[kv_namespaces]]
+binding = "SITEMAP_CACHE"
+id = "6b24a8c3221e4b68ad690c1be0fbd2cc"
+preview_id = "a95377f1552d4f32a8bc9d2b30a8d0ca"
+

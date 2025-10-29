@@ -1,0 +1,24 @@
+{
+  "name": "sitemap-merge",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker to merge sitemaps from three Webflow sites",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "cloudflare",
+    "worker",
+    "sitemap",
+    "webflow"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241106.0",
+    "typescript": "^5.6.0",
+    "wrangler": "^4.45.2"
+  }
+}
