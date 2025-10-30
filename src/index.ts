@@ -45,6 +45,9 @@ const BASE_URL = `https://${WWW_DOMAIN}`;
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
+    
+    // Log all incoming requests for debugging
+    console.log(`[${request.method}] ${url.pathname} - Host: ${url.hostname}`);
 
     // Webhook endpoint for cache invalidation
     if (
@@ -78,6 +81,7 @@ export default {
  */
 async function handleSitemapRequest(env: Env): Promise<Response> {
   try {
+    console.log('Sitemap request received - checking cache...');
     // Check KV cache first
     const cached = await env.SITEMAP_CACHE.get(KV_CACHE_KEY);
     if (cached) {
@@ -86,6 +90,7 @@ async function handleSitemapRequest(env: Env): Promise<Response> {
         const cacheAge = Date.now() - parseInt(timestamp, 10);
         // Use cached sitemap if less than 24 hours old
         if (cacheAge < 24 * 60 * 60 * 1000) {
+          console.log(`Returning cached sitemap (age: ${Math.round(cacheAge / 1000 / 60)} minutes)`);
           return new Response(cached, {
             headers: {
               'Content-Type': 'application/xml',
@@ -97,6 +102,7 @@ async function handleSitemapRequest(env: Env): Promise<Response> {
     }
 
     // Cache miss or expired - fetch fresh sitemaps
+    console.log('Cache miss or expired - generating fresh sitemap...');
     const mergedSitemap = await generateMergedSitemap(env);
 
     // Store in cache

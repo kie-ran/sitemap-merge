@@ -6,3 +6,6 @@ dist/
 .env
 .env.local
 
+
+# Test artifacts
+sitemap-live.xml

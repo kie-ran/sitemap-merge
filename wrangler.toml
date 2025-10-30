@@ -22,3 +22,5 @@ binding = "SITEMAP_CACHE"
 id = "6b24a8c3221e4b68ad690c1be0fbd2cc"
 preview_id = "a95377f1552d4f32a8bc9d2b30a8d0ca"
 
+[observability.logs]
+enabled = true
